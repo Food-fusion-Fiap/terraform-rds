@@ -34,6 +34,8 @@ jobs:
 
     - name: Terraform Apply
       run: terraform apply -auto-approve
+      env:
+        TF_VAR_db_password: ${{ secrets.DB_PASSWORD }}
 
   terraform_destroy:
     name: 'Terraform Destroy'
