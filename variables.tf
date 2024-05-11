@@ -5,6 +5,7 @@ variable "region" {
 
 variable "db_password" {
   description = "Password for the database"
+  default     = ""
 }
 
 variable "db_instance_class" {
