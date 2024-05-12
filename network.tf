@@ -113,6 +113,7 @@ resource "aws_security_group" "rds_public_sg" {
 
 # Criação do grupo de segurança para o endpoint do SSM
 resource "aws_security_group" "ssm_endpoint_sg" {
+  name   = "ssm_endpoint_sg"
   vpc_id = aws_vpc.main.id
 
   ingress {
@@ -138,4 +139,8 @@ resource "aws_vpc_endpoint" "ssm_endpoint" {
 
   security_group_ids = [aws_security_group.ssm_endpoint_sg.id]
   subnet_ids         = [aws_subnet.private_subnet.id]
+
+  tags = {
+    Name = "SSM Endpoint"
+  }
 }
