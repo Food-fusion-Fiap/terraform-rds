@@ -110,3 +110,32 @@ resource "aws_security_group" "rds_public_sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
+
+# Criação do grupo de segurança para o endpoint do SSM
+resource "aws_security_group" "ssm_endpoint_sg" {
+  vpc_id = aws_vpc.main.id
+
+  ingress {
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"] # Permite tráfego de entrada de qualquer lugar
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"] # Permite todo o tráfego de saída para qualquer lugar
+  }
+}
+
+# Criação do VPC endpoint para o AWS Systems Manager (SSM)
+resource "aws_vpc_endpoint" "ssm_endpoint" {
+  vpc_id            = aws_vpc.main.id
+  service_name      = "com.amazonaws.us-east-1.ssm"
+  vpc_endpoint_type = "Interface"
+
+  security_group_ids = [aws_security_group.ssm_endpoint_sg.id]
+  subnet_ids         = [aws_subnet.private_subnet.id]
+}
