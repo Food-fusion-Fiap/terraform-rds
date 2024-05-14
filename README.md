@@ -46,6 +46,9 @@ resource "aws_vpc" "main" {
 
 Lembre-se de seguir as melhores práticas de segurança ao usar o Terraform para provisionar recursos na AWS. Isso inclui o gerenciamento seguro de credenciais e o controle de acesso adequado aos recursos.
 
+## Modelagem do banco de dados
+![image](https://github.com/Food-fusion-Fiap/terraform-rds/assets/71785908/b613d8a6-fe0c-497a-8ccd-6e2bd4526911)
+
 ## FAQ
 
 **P: Como faço para acessar o banco de dados RDS criado?**
