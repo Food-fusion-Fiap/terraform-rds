@@ -68,7 +68,7 @@ resource "aws_route_table_association" "public" {
 # Associação da tabela de rotas pública à sub-rede pública
 resource "aws_route_table_association" "public2" {
   subnet_id      = aws_subnet.public_subnet2.id
-  route_table_id = aws_route_table.public2.id
+  route_table_id = aws_route_table.public.id
 }
 
 # Criação de uma tabela de rotas privada
